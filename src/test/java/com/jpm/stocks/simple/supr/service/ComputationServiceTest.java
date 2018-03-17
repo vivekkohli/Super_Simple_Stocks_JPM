@@ -1,4 +1,4 @@
-package com.jpm.stocks.simple.supr.helper;
+package com.jpm.stocks.simple.supr.service;
 
 import static org.junit.Assert.assertEquals;
 
