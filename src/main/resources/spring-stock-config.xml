@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd   
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+	<!-- stock data given in the problem statement is configured here -->
+	<bean id="TEA" class="com.jpm.stocks.simple.supr.model.Stock">
+		<property name="symbol" value="TEA"></property>
+		<property name="type" value="COMMON"></property>
+		<property name="lastDividend" value="0"></property>
+		<property name="fixedDividend" value="0"></property>
+		<property name="parValue" value="100"></property>
+	</bean>
+	<bean id="POP" class="com.jpm.stocks.simple.supr.model.Stock">
+		<property name="symbol" value="POP"></property>
+		<property name="type" value="COMMON"></property>
+		<property name="lastDividend" value="8"></property>
+		<property name="fixedDividend" value="0"></property>
+		<property name="parValue" value="100"></property>
+	</bean>
+	<bean id="ALE" class="com.jpm.stocks.simple.supr.model.Stock">
+		<property name="symbol" value="ALE"></property>
+		<property name="type" value="COMMON"></property>
+		<property name="lastDividend" value="23"></property>
+		<property name="fixedDividend" value="0"></property>
+		<property name="parValue" value="60"></property>
+	</bean>
+	<bean id="GIN" class="com.jpm.stocks.simple.supr.model.Stock">
+		<property name="symbol" value="GIN"></property>
+		<property name="type" value="PREFERRED"></property>
+		<property name="lastDividend" value="8"></property>
+		<property name="fixedDividend" value="2"></property>
+		<property name="parValue" value="100"></property>
+	</bean>
+	<bean id="JOE" class="com.jpm.stocks.simple.supr.model.Stock">
+		<property name="symbol" value="JOE"></property>
+		<property name="type" value="COMMON"></property>
+		<property name="lastDividend" value="13"></property>
+		<property name="fixedDividend" value="0"></property>
+		<property name="parValue" value="250"></property>
+	</bean>
+
+<!-- 	<bean id="stocksManager"
+		class="com.jpm.stocks.simple.supr.service.FileBasedStockManager">
+		<property name="stocks">
+			<list>
+				<ref bean="TEA" />
+				<ref bean="POP" />
+				<ref bean="ALE" />
+				<ref bean="GIN" />
+				<ref bean="JOE" />
+			</list>
+		</property>
+	</bean> -->
+</beans>

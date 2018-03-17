@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd   
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+	<!-- Importing the stock data here as stocks are "Composed" in a Trade -->
+	<import resource="spring-stock-config.xml"></import>
+
+	<!-- Sample trade data is configured here. Using a static method from a 
+		Helper class to move the current time by designated minutes in past as we 
+		need last 15 minutes trade data as per requirement -->
+
+	<bean id="trade1" class="com.jpm.stocks.simple.supr.model.Trade">
+		<property name="executionTimeStamp">
+			<bean class="com.jpm.stocks.simple.supr.helper.TradeDateHelper"
+				factory-method="getCurrentTimeAdjustedInMinutes">
+				<constructor-arg value="-5"></constructor-arg>
+			</bean>
+		</property>
+		<property name="quantityOfShares" value="15"></property>
+		<property name="direction" value="BUY"></property>
+		<property name="price" value="500"></property>
+		<property name="stock" ref="TEA"></property>
+	</bean>
+
+	<bean id="trade2" class="com.jpm.stocks.simple.supr.model.Trade">
+		<property name="executionTimeStamp">
+			<bean class="com.jpm.stocks.simple.supr.helper.TradeDateHelper"
+				factory-method="getCurrentTimeAdjustedInMinutes">
+				<constructor-arg value="-10"></constructor-arg>
+			</bean>
+		</property>
+		<property name="quantityOfShares" value="35"></property>
+		<property name="direction" value="SELL"></property>
+		<property name="price" value="300"></property>
+		<property name="stock" ref="POP"></property>
+	</bean>
+
+	<bean id="trade3" class="com.jpm.stocks.simple.supr.model.Trade">
+		<property name="executionTimeStamp">
+			<bean class="com.jpm.stocks.simple.supr.helper.TradeDateHelper"
+				factory-method="getCurrentTimeAdjustedInMinutes">
+				<constructor-arg value="-15"></constructor-arg>
+			</bean>
+		</property>
+		<property name="quantityOfShares" value="55"></property>
+		<property name="direction" value="SELL"></property>
+		<property name="price" value="800"></property>
+		<property name="stock" ref="ALE"></property>
+	</bean>
+
+	<!-- THESE 2 BELOW TRADES WOULD NOT BE INCLUDED FOR COMPUTATION AS THEY 
+		ARE OLDER THAN 15 MINUTES (AS PER THE REQUIREMENT) -->
+
+	<bean id="trade4" class="com.jpm.stocks.simple.supr.model.Trade">
+		<property name="executionTimeStamp">
+			<bean class="com.jpm.stocks.simple.supr.helper.TradeDateHelper"
+				factory-method="getCurrentTimeAdjustedInMinutes">
+				<constructor-arg value="-20"></constructor-arg>
+			</bean>
+		</property>
+		<property name="quantityOfShares" value="22"></property>
+		<property name="direction" value="SELL"></property>
+		<property name="price" value="344"></property>
+		<property name="stock" ref="GIN"></property>
+	</bean>
+
+	<bean id="trade5" class="com.jpm.stocks.simple.supr.model.Trade">
+		<property name="executionTimeStamp">
+			<bean class="com.jpm.stocks.simple.supr.helper.TradeDateHelper"
+				factory-method="getCurrentTimeAdjustedInMinutes">
+				<constructor-arg value="-25"></constructor-arg>
+			</bean>
+		</property>
+		<property name="quantityOfShares" value="55"></property>
+		<property name="direction" value="BUY"></property>
+		<property name="price" value="255"></property>
+		<property name="stock" ref="JOE"></property>
+	</bean>
+
+	<bean id="tradesManager"
+		class="com.jpm.stocks.simple.supr.service.FileBasedTradeManager">
+		<property name="trades">
+			<list>
+				<ref bean="trade1" />
+				<ref bean="trade2" />
+				<ref bean="trade3" />
+				<ref bean="trade4" />
+				<ref bean="trade5" />
+			</list>
+		</property>
+	</bean>
+
+</beans>
